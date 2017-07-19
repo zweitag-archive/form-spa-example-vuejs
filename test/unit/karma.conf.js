@@ -11,9 +11,9 @@ module.exports = function (config) {
     // 1. install corresponding karma launcher
     //    http://karma-runner.github.io/0.13/config/browsers.html
     // 2. add it to the `browsers` array below.
-    browsers: ['Chrome'],
+    browsers: ['chrome_headless'],
     frameworks: ['mocha', 'sinon-chai'],
-    reporters: ['spec', 'coverage'],
+    reporters: ['spec'],
     files: ['./index.js'],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
@@ -29,5 +29,12 @@ module.exports = function (config) {
         { type: 'text-summary' },
       ]
     },
+    customLaunchers: {
+      chrome_headless: {
+        base: 'Chrome',
+        flags: ['--headless', '--disable-gpu', '--remote-debugging-port=9222'],
+        displayName: 'Chrome headless'
+      }
+    }
   });
 };
