@@ -6,6 +6,7 @@ export default {
     name: 'EnterSsn',
     computed: {
         ...mapState({
+            isSsnValid: state => state.signup.isSsnValid,
             ssn: state => state.signup.ssn,
             address: state => state.signup.address,
         }),
@@ -13,6 +14,7 @@ export default {
     methods: {
         onChangeSsn(event) {
             this.$store.dispatch('setSsn', event.target.value);
+            this.$store.dispatch('setSsnValidity', false);
         },
         onConfirmSsn() {
             this.$store.dispatch('confirmSsn');
@@ -24,6 +26,7 @@ export default {
     render(createElem) {
         return createElem(EnterSsn, {
             props: {
+                isSsnValid: this.isSsnValid,
                 ssn: this.ssn,
                 address: this.address,
                 onChangeSsn: this.onChangeSsn,

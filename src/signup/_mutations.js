@@ -4,6 +4,7 @@ export const SET_FIRST_NAME = 'SET_FIRST_NAME';
 export const SET_LAST_NAME = 'SET_LAST_NAME';
 export const SET_GENDER = 'SET_GENDER';
 export const SET_SSN = 'SET_SSN';
+export const SET_SSN_VALIDITY = 'SET_SSN_VALIDITY';
 export const SET_ADDRESS = 'SET_ADDRESS';
 
 export default {
@@ -24,6 +25,9 @@ export default {
     },
     [SET_SSN](state, ssn) {
         state.ssn = ssn; // eslint-disable-line
+    },
+    [SET_SSN_VALIDITY](state, isValid) {
+        state.isSsnValid = isValid; // eslint-disable-line
     },
     [SET_ADDRESS](state, address) {
         state.address = address; // eslint-disable-line

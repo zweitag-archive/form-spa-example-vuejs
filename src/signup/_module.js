@@ -9,6 +9,7 @@ const initialState = {
     lastName: '',
     gender: 'other',
     ssn: '',
+    isSsnValid: false,
     address: {
         street: '',
         city: '',

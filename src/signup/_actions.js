@@ -25,6 +25,9 @@ export default {
     setSsn(context, ssn) {
         context.commit(m.SET_SSN, ssn);
     },
+    setSsnValidity(context, isValid) {
+        context.commit(m.SET_SSN_VALIDITY, isValid);
+    },
     async confirmSsn(context) {
         const ssn = context.state.ssn;
         const body = { ssn };
@@ -38,6 +41,7 @@ export default {
         const json = await response.json();
         if (!json.error) {
             context.commit(m.SET_ADDRESS, json);
+            context.dispatch('setSsnValidity', true);
         }
     },
     confirmAddress(context) {

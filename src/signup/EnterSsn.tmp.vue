@@ -3,6 +3,7 @@ import './EnterSsn.scss';
 
 export default {
     props: {
+        isSsnValid: Boolean,
         ssn: String,
         address: Object,
         onChangeSsn: Function,
@@ -12,7 +13,7 @@ export default {
     methods: {
         onConfirm() {
             if (this.ssn) {
-                if (this.address.name) {
+                if (this.isSsnValid) {
                     this.onSubmit();
                 } else {
                     this.onConfirmSsn();
@@ -23,7 +24,7 @@ export default {
 };
 </script>
 <template>
-    <form class="signup-form" @submit.prevent="onSubmit">
+    <form class="signup-form" @submit.prevent="onConfirm">
         <p>Please enter your social security number:</p>
         <v-input
             :value="ssn"
@@ -31,9 +32,11 @@ export default {
             placeholder="12 3456 7890 1234 5678"
             label="SSN"
         />
-        <button v-if="ssn" type="button"  class="button" @click="onConfirmSsn">Use SSN</button>
-        <div v-if="address.street"><strong>Steet:</strong> {{ address.street }}</div>
-        <div v-if="address.city"><strong>City:</strong> {{ address.city }}</div>
-        <button class="button" v-if="address.street" type="submit">Submit</button>
+        <button v-if="!isSsnValid" type="submit"  class="button">Use SSN</button>
+        <div v-else>
+            <div><strong>Steet:</strong> {{ address.street }}</div>
+            <div><strong>City:</strong> {{ address.city }}</div>
+            <button class="button" type="submit">Submit</button>
+        </div>
     </form>
 </template>
