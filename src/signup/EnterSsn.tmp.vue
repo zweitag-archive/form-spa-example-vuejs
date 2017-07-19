@@ -32,8 +32,8 @@ export default {
             placeholder="12 3456 7890 1234 5678"
             label="SSN"
         />
-        <button v-if="!isSsnValid" type="submit"  class="button">Use SSN</button>
-        <div v-else>
+        <button v-if="ssn && !isSsnValid" type="submit"  class="button">Use SSN</button>
+        <div v-if="ssn && isSsnValid">
             <div><strong>Steet:</strong> {{ address.street }}</div>
             <div><strong>City:</strong> {{ address.city }}</div>
             <button class="button" type="submit">Submit</button>
